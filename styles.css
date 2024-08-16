@@ -1,0 +1,52 @@
+/* Reset básico para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#playPauseBtn {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 30px; /* Aumenta o padding para tornar o botão maior */
+    font-size: 0; /* Remove o espaço para texto */
+    cursor: pointer;
+    border-radius: 15px; /* Aumenta o border-radius para manter a forma proporcional */
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#playPauseBtn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1); /* Aumenta o botão levemente ao passar o mouse */
+}
+
+#playPauseBtn:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#playIcon, #pauseIcon {
+    width: 48px; /* Aumenta o tamanho dos ícones para corresponder ao botão maior */
+    height: 48px;
+}
