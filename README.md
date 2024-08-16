@@ -1,1 +1,2 @@
-# lucimara
+# Lucimara 🚀✨
+"Vontade, garra e coragem!"
