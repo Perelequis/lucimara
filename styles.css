@@ -4,29 +4,26 @@ body, html {
     overflow: hidden;
     background-color: black;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
 }
 
 .video-container {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
 
 #videoPlayer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
     width: 100%;
     height: 100%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
+    border: none;
 }
 
 @media (orientation: portrait) {
     #videoPlayer {
-        transform: rotate(90deg) translate(-50%, -50%);
+        transform: rotate(90deg);
+        transform-origin: center;
     }
 }
