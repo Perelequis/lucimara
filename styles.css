@@ -1,34 +1,52 @@
-/* Reset básico */
+/* Reset básico para garantir consistência entre navegadores */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    background-color: #000; /* Usei código hexadecimal para o preto */
-    color: #fff; /* Texto branco por padrão */
+html, body {
+    height: 100%;
     font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden; /* Evita rolagem caso o conteúdo ultrapasse a altura da tela */
+    height: 100vh; /* Garante que o corpo ocupe a tela toda */
 }
 
-#imageContainer {
-    width: 80vw;
-    height: 80vh;
-    background-image: url('lucimara.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: 5px solid #fff; /* Adiciona uma borda branca ao redor do container */
-    border-radius: 15px; /* Bordas arredondadas */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Sombra suave ao redor do container */
-    transition: transform 0.3s ease-in-out; /* Adiciona uma animação suave ao redimensionar */
+.player-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#imageContainer:hover {
-    transform: scale(1.05); /* Amplia levemente o container ao passar o mouse */
+#playPauseBtn {
+    background: url('lucimara.png') no-repeat center center;
+    background-size: contain; /* Ajusta a imagem para caber dentro do botão */
+    border: none; /* Remove a borda do botão */
+    width: 150px; /* Define uma largura apropriada para a imagem */
+    height: 150px; /* Define uma altura apropriada para a imagem */
+    cursor: pointer;
+    border-radius: 50%; /* Faz o botão ser circular */
+    padding: 0; /* Remove o padding para que a imagem cubra todo o botão */
+    transition: transform 0.2s;
+}
+
+#playPauseBtn:hover {
+    transform: scale(1.1); /* Aumenta o botão levemente ao passar o mouse */
+}
+
+#playPauseBtn:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Esconde os ícones de play e pause já que o botão é a própria imagem */
+#playIcon, #pauseIcon {
+    display: none;
 }
