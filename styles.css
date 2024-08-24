@@ -20,10 +20,3 @@ body, html {
     height: 100%;
     border: none;
 }
-
-@media (orientation: portrait) {
-    #videoPlayer {
-        transform: rotate(90deg);
-        transform-origin: center;
-    }
-}
