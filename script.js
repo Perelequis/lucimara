@@ -1,40 +1,41 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const audioPlayer = document.getElementById('audioPlayer');
+document.addEventListener("DOMContentLoaded", function() {
+    const videoPlayer = document.getElementById('videoPlayer');
     const playPauseBtn = document.getElementById('playPauseBtn');
-    const playIcon = document.getElementById('playIcon');
-    const pauseIcon = document.getElementById('pauseIcon');
 
-    // Função para alternar entre play e pause
-    const togglePlayPause = () => {
-        if (audioPlayer.paused) {
-            audioPlayer.play().catch(error => {
-                console.error('Erro ao tentar reproduzir o áudio:', error);
-            });
-            playIcon.style.display = 'none';
-            pauseIcon.style.display = 'inline';
+    // Play or pause the video when the button is clicked
+    playPauseBtn.addEventListener('click', function() {
+        if (videoPlayer.paused) {
+            videoPlayer.play();
+            playPauseBtn.textContent = 'Pause';
         } else {
-            audioPlayer.pause();
-            playIcon.style.display = 'inline';
-            pauseIcon.style.display = 'none';
+            videoPlayer.pause();
+            playPauseBtn.textContent = 'Play';
+        }
+    });
+
+    // Ensure the video continues playing when the user leaves the page or turns off the device
+    document.addEventListener("visibilitychange", function() {
+        if (!document.hidden && videoPlayer.paused) {
+            videoPlayer.play();
+            playPauseBtn.textContent = 'Pause';
+        }
+    });
+
+    // Automatically pause the video if the window is being closed
+    window.addEventListener("beforeunload", function() {
+        videoPlayer.pause();
+    });
+
+    // Ensure video playback continues even if the user exits the browser or locks the screen
+    const playInBackground = () => {
+        const video = videoPlayer;
+        if ('pictureInPictureEnabled' in document && !video.paused) {
+            video.requestPictureInPicture().catch(error => {
+                console.log('Picture-in-Picture failed', error);
+            });
         }
     };
 
-    playPauseBtn.addEventListener('click', togglePlayPause);
-
-    // Retomar reprodução ao mudar de aba ou desligar a tela
-    document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden' && !audioPlayer.paused) {
-            audioPlayer.play().catch(error => {
-                console.error('Erro ao tentar retomar a reprodução:', error);
-            });
-        }
-    });
-
-    // Controle de foco no botão para acessibilidade
-    playPauseBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            togglePlayPause();
-        }
-    });
+    document.addEventListener('visibilitychange', playInBackground);
+    document.addEventListener('resume', playInBackground);
 });
