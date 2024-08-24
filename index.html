@@ -44,8 +44,8 @@
             border-radius: 15px; /* Aumenta o border-radius para manter a forma proporcional */
             overflow: hidden; /* Garante que a imagem não saia do botão */
             transition: background-color 0.3s, transform 0.2s;
-            width: 100px; /* Define uma largura fixa para o botão */
-            height: 100px; /* Define uma altura fixa para o botão */
+            width: 120px; /* Define uma largura fixa para o botão */
+            height: 120px; /* Define uma altura fixa para o botão */
         }
 
         #playPauseBtn:hover {
@@ -78,17 +78,25 @@
             height: 48px;
             z-index: 1; /* Garante que os ícones fiquem sobre a imagem */
         }
+
+        #playIcon {
+            display: inline; /* Exibe o ícone de play inicialmente */
+        }
+
+        #pauseIcon {
+            display: none; /* Esconde o ícone de pause inicialmente */
+        }
     </style>
 </head>
 <body>
     <div class="player-container">
         <button id="playPauseBtn" aria-label="Play/Pause">
             <!-- Ícone de Play (triângulo) -->
-            <svg id="playIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="playIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 5V19L19 12L8 5Z" fill="white"/>
             </svg>
             <!-- Ícone de Pause (barras) -->
-            <svg id="pauseIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <svg id="pauseIcon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 19H10V5H6V19ZM14 5V19H18V5H14Z" fill="white"/>
             </svg>
         </button>
