@@ -5,10 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucimara Veradora</title>
     <link rel="icon" href="lucimara.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Reset básico para garantir consistência entre navegadores */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .player-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #playPauseBtn {
+            position: relative; /* Permite que a imagem seja posicionada dentro do botão */
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 30px; /* Aumenta o padding para tornar o botão maior */
+            font-size: 0; /* Remove o espaço para texto */
+            cursor: pointer;
+            border-radius: 15px; /* Aumenta o border-radius para manter a forma proporcional */
+            overflow: hidden; /* Garante que a imagem não saia do botão */
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100px; /* Define uma largura fixa para o botão */
+            height: 100px; /* Define uma altura fixa para o botão */
+        }
+
+        #playPauseBtn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1); /* Aumenta o botão levemente ao passar o mouse */
+        }
+
+        #playPauseBtn:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Adiciona a imagem de fundo */
+        #playPauseBtn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('lucimara.png') no-repeat center center;
+            background-size: cover; /* Ajusta a imagem para cobrir todo o botão */
+            z-index: 0; /* Garante que a imagem esteja atrás dos ícones */
+        }
+
+        /* Ajusta os ícones para que fiquem visíveis sobre a imagem */
+        #playIcon, #pauseIcon {
+            position: relative;
+            width: 48px; /* Aumenta o tamanho dos ícones para corresponder ao botão maior */
+            height: 48px;
+            z-index: 1; /* Garante que os ícones fiquem sobre a imagem */
+        }
+    </style>
 </head>
 <body>
-    <video id="videoPlayer" autoplay muted></video>
-    <script src="script.js"></script>
+    <div class="player-container">
+        <button id="playPauseBtn" aria-label="Play/Pause">
+            <!-- Ícone de Play (triângulo) -->
+            <svg id="playIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5V19L19 12L8 5Z" fill="white"/>
+            </svg>
+            <!-- Ícone de Pause (barras) -->
+            <svg id="pauseIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <path d="M6 19H10V5H6V19ZM14 5V19H18V5H14Z" fill="white"/>
+            </svg>
+        </button>
+        <audio id="audioPlayer" src="lucimara.mp3" preload="auto" loop></audio>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+
+            // Função para alternar entre play e pause
+            const togglePlayPause = () => {
+                if (audioPlayer.paused) {
+                    audioPlayer.play().catch(error => {
+                        console.error('Erro ao tentar reproduzir o áudio:', error);
+                    });
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'inline';
+                } else {
+                    audioPlayer.pause();
+                    playIcon.style.display = 'inline';
+                    pauseIcon.style.display = 'none';
+                }
+            };
+
+            playPauseBtn.addEventListener('click', togglePlayPause);
+
+            // Retomar reprodução ao mudar de aba ou desligar a tela
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'hidden' && !audioPlayer.paused) {
+                    audioPlayer.play().catch(error => {
+                        console.error('Erro ao tentar retomar a reprodução:', error);
+                    });
+                }
+            });
+
+            // Controle de foco no botão para acessibilidade
+            playPauseBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    togglePlayPause();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
