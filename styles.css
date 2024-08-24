@@ -26,14 +26,17 @@ body {
 }
 
 #playPauseBtn {
-    background: url('lucimara.png') no-repeat center center;
-    background-size: cover; /* Ajusta a imagem para cobrir toda a área do botão */
-    border: none; /* Remove a borda do botão */
-    width: 300px; /* Aumenta a largura da imagem */
-    height: 300px; /* Aumenta a altura da imagem */
-    cursor: pointer;
+    background: none; /* Remove qualquer fundo padrão */
+    border: none; /* Remove qualquer borda padrão */
     padding: 0; /* Remove o padding para que a imagem cubra todo o botão */
+    cursor: pointer;
     transition: transform 0.2s;
+}
+
+#playPauseBtn img {
+    width: 300px; /* Aumenta a largura da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Garante que a imagem ocupe todo o botão */
 }
 
 #playPauseBtn:hover {
@@ -45,7 +48,7 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Esconde os ícones de play e pause já que o botão é a própria imagem */
+/* Esconde os ícones de play e pause, se estiverem presentes */
 #playIcon, #pauseIcon {
     display: none;
 }
