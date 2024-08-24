@@ -9,13 +9,8 @@
 </head>
 <body>
     <div class="video-container">
-        <video id="videoPlayer" playsinline loop>
-            <source src="https://www.youtube.com/embed/7Ng60oxLxmM?autoplay=1" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-        </video>
-        <div class="controls">
-            <button id="playPauseBtn">Pause</button>
-        </div>
+        <iframe id="videoPlayer" src="https://www.youtube.com/embed/7Ng60oxLxmM?autoplay=1&loop=1&playlist=7Ng60oxLxmM&controls=1" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
     <script src="script.js"></script>
 </body>
