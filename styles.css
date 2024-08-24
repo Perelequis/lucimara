@@ -27,12 +27,11 @@ body {
 
 #playPauseBtn {
     background: url('lucimara.png') no-repeat center center;
-    background-size: contain; /* Ajusta a imagem para caber dentro do botão */
+    background-size: cover; /* Ajusta a imagem para cobrir toda a área do botão */
     border: none; /* Remove a borda do botão */
-    width: 150px; /* Define uma largura apropriada para a imagem */
-    height: 150px; /* Define uma altura apropriada para a imagem */
+    width: 300px; /* Aumenta a largura da imagem */
+    height: 300px; /* Aumenta a altura da imagem */
     cursor: pointer;
-    border-radius: 50%; /* Faz o botão ser circular */
     padding: 0; /* Remove o padding para que a imagem cubra todo o botão */
     transition: transform 0.2s;
 }
