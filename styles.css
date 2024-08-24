@@ -1,18 +1,18 @@
-#playPauseBtn {
-    background-image: url('botao.png'); /* Adiciona a imagem como plano de fundo */
-    background-size: 100% 100%; /* Ajusta o tamanho da imagem para cobrir todo o botão */
-    width: 100px; /* Define a largura do botão */
-    height: 50px; /* Define a altura do botão */
-    cursor: pointer;
-    border: none; /* Remove a borda */
-    transition: transform 0.2s;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black; /* Define o fundo preto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-#playPauseBtn:hover {
-    transform: scale(1.1); /* Aumenta o botão levemente ao passar o mouse */
-}
-
-#playPauseBtn:focus {
-    outline: none;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+#imageContainer {
+    width: 80vw; /* Define a largura da imagem como 80% da largura da tela */
+    height: 80vh; /* Define a altura da imagem como 80% da altura da tela */
+    background-image: url('lucimara.png'); /* Adiciona a imagem como plano de fundo */
+    background-size: contain; /* Ajusta o tamanho da imagem para se ajustar dentro do container */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-position: center; /* Centraliza a imagem */
 }
